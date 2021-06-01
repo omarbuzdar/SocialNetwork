@@ -20,25 +20,33 @@ int main(int argc, char *argv[]){
     
     string readLine;
     string name;
+    ofstream outFile("profileOutput");
     
     if(inFile.is_open()){
 
         string thePerson;
+        string age;
+        string occupation;
 
         getline(inFile, readLine, '\n');       // get rid of 'Name,Age,Occupation,Friends'  line 1
         while(getline(inFile, readLine, '\n') && readLine != ""){
             int firstComma = readLine.find(",");
             thePerson = readLine.substr(0, firstComma);
             rb1.insert(readLine.substr(0, firstComma), fg1);    // finds the persons name
-
+            
             // need to store the persons name in ProfileData
+             outFile << setw(20) << thePerson;//putting output to disk
             
             readLine.erase(0, firstComma + 1);
             firstComma = readLine.find(",");
             //cout << "AGE: " << readLine.substr(0, firstComma) << endl;    // finds the persons age
+            
+            outFile << setw(3) << readLine.substr(0, firstComma);
 
             readLine.erase(0, firstComma + 1);
             firstComma = readLine.find(",");
+
+            outFile << setw(30) << readLine.substr(0, firstComma) << endl;//putting output to disk
             //cout << "JOB: " << readLine.substr(0, firstComma) << endl;    // finds the persons occupation
             
             readLine.erase(0, firstComma + 2);
@@ -52,8 +60,8 @@ int main(int argc, char *argv[]){
         }
     }
 
-    ofstream outFile;
-    outFile.open(argv[2]);
+    //ofstream outFile;
+    //outFile.open(argv[2]);
     
     inFile.close();
     outFile.close();   
