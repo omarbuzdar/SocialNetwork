@@ -4,6 +4,7 @@
 #include "redBlackTree.cpp"
 #include "friendshipGraph.h"
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 int main(int argc, char *argv[]){
@@ -52,7 +53,7 @@ int main(int argc, char *argv[]){
             readLine.erase(0, firstComma + 2);
             firstComma = readLine.find(",\"");
             int secondComma = 0;
-            while(readLine.substr(0, secondComma) != "\""){
+            while(readLine[0] != '"'){
                 secondComma = readLine.find(",");
                 fg1.addFriend(thePerson, readLine.substr(0, secondComma));
                 readLine.erase(0, secondComma + 1);
