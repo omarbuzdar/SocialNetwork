@@ -34,21 +34,15 @@ int main(int argc, char *argv[]){
             int firstComma = readLine.find(",");
             thePerson = readLine.substr(0, firstComma);
             rb1.insert(readLine.substr(0, firstComma), fg1);    // finds the persons name
-            
-            // need to store the persons name in ProfileData
-             outFile << setw(20) << thePerson;//putting output to disk
+            outFile << setw(20) << thePerson;     //storing name to profileData
             
             readLine.erase(0, firstComma + 1);
-            firstComma = readLine.find(",");
-            //cout << "AGE: " << readLine.substr(0, firstComma) << endl;    // finds the persons age
-            
-            outFile << setw(3) << readLine.substr(0, firstComma);
+            firstComma = readLine.find(",");            
+            outFile << setw(3) << readLine.substr(0, firstComma);      // setting the age
 
             readLine.erase(0, firstComma + 1);
             firstComma = readLine.find(",");
-
-            outFile << setw(30) << readLine.substr(0, firstComma) << endl;//putting output to disk
-            //cout << "JOB: " << readLine.substr(0, firstComma) << endl;    // finds the persons occupation
+            outFile << setw(30) << readLine.substr(0, firstComma) << endl;    //setting the job
             
             readLine.erase(0, firstComma + 2);
             firstComma = readLine.find(",\"");
@@ -67,10 +61,10 @@ int main(int argc, char *argv[]){
     inFile.close();
     outFile.close();   
 
-    cout << rb1.inOrder() << endl << endl;
-    fg1.printFriends("Mason Davis");
-    fg1.print();
-    
+    // cout << rb1.inOrder() << endl << endl;
+    // fg1.printFriends("Mason Davis");
+    // fg1.print();
+
     
     return 0;
 
