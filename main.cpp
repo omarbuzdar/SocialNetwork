@@ -22,6 +22,8 @@ int main(int argc, char *argv[]){
     string readLine;
     string name;
     ofstream outFile("profileOutput");
+
+    int profileDataIndex = 1;
     
     if(inFile.is_open()){
 
@@ -33,7 +35,7 @@ int main(int argc, char *argv[]){
         while(getline(inFile, readLine, '\n') && readLine != ""){
             int firstComma = readLine.find(",");
             thePerson = readLine.substr(0, firstComma);
-            rb1.insert(readLine.substr(0, firstComma), fg1);    // finds the persons name
+            rb1.insert(readLine.substr(0, firstComma), profileDataIndex, fg1);    // finds the persons name
             outFile << setw(20) << thePerson;     //storing name to profileData
             
             readLine.erase(0, firstComma + 1);
@@ -52,6 +54,7 @@ int main(int argc, char *argv[]){
                 fg1.addFriend(thePerson, readLine.substr(0, secondComma));
                 readLine.erase(0, secondComma + 1);
             }
+            profileDataIndex += 1;
         }
     }
 
@@ -64,6 +67,8 @@ int main(int argc, char *argv[]){
     // cout << rb1.inOrder() << endl << endl;
     // fg1.printFriends("Mason Davis");
     // fg1.print();
+
+    cout << "PROFILE INDEX TEST: " << rb1.getProfileIndex("Omar Buzdar") << endl;
 
     
     return 0;

@@ -14,9 +14,9 @@ class friendshipGraph;
 
 
 struct redBlackNode {
-    redBlackNode(std::string n) : name(n), graphPtr(nullptr), left(nullptr), right(nullptr), parent(nullptr){}
+    redBlackNode(std::string n) : name(n), graphPtr(nullptr), left(nullptr), right(nullptr), parent(nullptr) {}
     std::string name;
-    int* profileDataIndex;
+    int profileDataIndex;
     graphNode* graphPtr;
     std::string color;
     redBlackNode* left;
@@ -59,6 +59,15 @@ struct redBlackNode {
             this->color = "b";
         }
     }
+
+    int getIndex(){
+        return profileDataIndex;
+    }
+
+    graphNode* getGraphPointer(){
+        return graphPtr;
+    }
+
     // pointer to graph/adjecency list
     // int index to profile info on disk
     // 
@@ -72,7 +81,7 @@ class redBlack {
     public:
         redBlack() : root(nullptr) {}
 
-        void insert(std::string name, friendshipGraph& theG);    
+        void insert(std::string name, int index, friendshipGraph& theG);    
         std::string rangeQuery(redBlackNode* r, std::string name1, std::string name2);
         std::string _rangeQuery(redBlackNode* r, std::string name1, std::string name2);
         redBlackNode* exactSearch(redBlackNode* n, std::string key);
@@ -85,13 +94,14 @@ class redBlack {
         int countNodes(redBlackNode* r);
 
         redBlackNode* insertHelper(redBlackNode* n, std::string key);
-
-        
+        int getProfileIndex(std::string name);
 
         void LLRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
         void RRRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
         void LRRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
         void RLRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
+
+        void friendshipQuery(std::string name, ifstream& theFile);
         
     private:
         redBlackNode* root;

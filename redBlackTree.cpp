@@ -11,7 +11,6 @@ redBlackNode* redBlack::exactSearch(redBlackNode* n, std::string key){
     if (n->name < key){
        return exactSearch(n->right, key);
     }
- 
     return exactSearch(n->left, key);
 }
 
@@ -37,6 +36,15 @@ void redBlack::makeRootBlack() {
     if(root->color == "r"){
         root->color = 'b';
     }
+}
+
+int redBlack::getProfileIndex(std::string name){
+    redBlackNode* temp = exactSearch(this->root, name);
+    if(temp == 0){
+        std::cout << "Error! Name not found!" << std::endl;
+        return -1;
+    }
+    return temp->getIndex();
 }
 
 void redBlack::LLRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp){
@@ -176,9 +184,10 @@ redBlackNode* redBlack::insertHelper(redBlackNode* n, std::string key){
     return this->insertHelper(n->left, key);
 }
 
-void redBlack::insert(std::string name, friendshipGraph& theG){
+void redBlack::insert(std::string name, int index, friendshipGraph& theG){
     redBlackNode* newNode = new redBlackNode(name);
-    theG.addProfile(name, *newNode);
+    newNode->profileDataIndex = index;
+    theG.addProfile(name, index, *newNode);
     
     newNode->color = "r";
     if(root == nullptr){
@@ -286,4 +295,17 @@ int redBlack::countNodes(redBlackNode* r){
     int nodes = 1;
     nodes += (this->countNodes(r->left) + this->countNodes(r->right));
     return nodes;
+}
+
+void redBlack::friendshipQuery(std::string name, ifstream& theFile){
+    theFile.open();
+    redBlackNode* temp = exactSearch(this->root, name);
+    //int personIndex = temp->getIndex();
+    graphNode* graphPerson = temp->getGraphPointer();
+    vector<std::string> friendsNames = graphPerson->findFriends();
+    for(int i = 0; i < friendsNames.size(); i++){
+        int profileNum = (this->exactSearch(this->root, friendsNames[i]))->getIndex();
+
+    }
+    theFile.close();
 }

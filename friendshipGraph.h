@@ -28,11 +28,6 @@ class friendLL {
                 }
                 temp->next = newNode;
             }
-
-            //else{
-            //     newNode->next = head;
-            //     head = newNode;
-            // }
         }
 
         void printAllFriends(){
@@ -41,6 +36,10 @@ class friendLL {
                 std::cout << "\tName: " << temp->name << std::endl;
                 temp = temp->next;
             }
+        }
+
+        Node* getHead(){
+            return head;
         }
 
     private:
@@ -56,6 +55,16 @@ struct graphNode {
         right = nullptr;
     } 
 
+    vector<std::string> findFriends(){
+        vector<std::string> names;
+        Node* temp = myFriends->getHead();
+        while(temp != nullptr){
+            names.push_back(temp->name);
+            temp = temp->next;
+        }
+        return names;
+    }
+
     std::string name;
     friendLL* myFriends;
     int profileIndex;
@@ -63,42 +72,18 @@ struct graphNode {
     redBlackNode* right;
 };
 
+
 class friendshipGraph {
     public:
         friendshipGraph() {};
 
-        void addProfile(std::string n, redBlackNode& rbNode);
-        // {
-        //     graphNode newNode = graphNode(n);
-        //     rbNode.graphPtr = &newNode;
-        //     theGraph.push_back(newNode);
-        // }
+        void addProfile(std::string n, int index, redBlackNode& rbNode);
+        void addFriend(std::string name1, std::string name2);
+        void printFriends(std::string n);
+        void print();
 
-        void addFriend(std::string name1, std::string name2){
-            for(int i = 0; i < theGraph.size(); i++) {
-                if(theGraph[i].name == name1) {
-                    theGraph[i].myFriends->newFriend(name2);
-                }
-                if(theGraph[i].name == name2){
-                    theGraph[i].myFriends->newFriend(name1);
-                }
-            }
-        }
-
-        void printFriends(std::string n) {
-            for(int i = 0; i < theGraph.size(); i++) {
-                if(theGraph[i].name == n) {
-                    std::cout << "Friends of " << n << std::endl;
-                    theGraph[i].myFriends->printAllFriends();
-                }
-            }
-        }
-
-        void print(){
-            for(int i = 0; i < theGraph.size(); i++){
-                std::cout << theGraph[i].name << std::endl;
-            }
-        }
+        int getProfileIndex(std::string name);
+        friendshipGraph* getGraph(){ return this; }
         
     private:
         std::vector<graphNode> theGraph;
