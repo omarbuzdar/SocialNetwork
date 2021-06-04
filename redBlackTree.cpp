@@ -298,12 +298,12 @@ int redBlack::countNodes(redBlackNode* r){
 }
 
 void redBlack::friendshipQuery(std::string name){
+    cout << "Friends of " << name << ":\n\n";
     redBlackNode* temp = exactSearch(this->root, name);
     string readLine;
     string thePerson;
     string theAge;
     string theOccupation;
-    //int personIndex = temp->getIndex();
     graphNode* graphPerson = temp->getGraphPointer();
     
     vector<std::string> friendsNames = graphPerson->findFriends();
@@ -311,21 +311,36 @@ void redBlack::friendshipQuery(std::string name){
     for(int i = 1; i <= friendsNames.size(); i++){
         ifstream theFile;
         theFile.open("profileOutput");
-        cout << "here1" << endl;
         int profileNum = (this->exactSearch(this->root, friendsNames[i-1]))->getIndex();
-        for(int j = 1; j <= profileNum; j++)
-        {
+        for(int j = 1; j <= profileNum; j++){
             getline(theFile, readLine, '\n');
         }
-        cout << "here2" << endl;
 
         thePerson = readLine.substr(0, 20);
+        for(int n = 0; n < readLine.size(); n++){
+            if(readLine[n] != ' '){
+                break;
+            }
+            thePerson.erase(0,1);
+        }
         readLine.erase(0,20);
         theAge = readLine.substr(0,3);
+        for(int n = 0; n < readLine.size(); n++){
+            if(readLine[n] != ' '){
+                break;
+            }
+            theAge.erase(0,1);
+        }
         readLine.erase(0,3);
         theOccupation = readLine;
+        for(int n = 0; n < readLine.size(); n++){
+            if(readLine[n] != ' '){
+                break;
+            }
+            theOccupation.erase(0,1);
+        }
 
-        cout << "\tFriend " << i << ":\t" << thePerson << " \tAge: " << theAge << "\tOccupation: " << theOccupation << endl;  
+        cout << "\tFriend " << i << ": " << thePerson << " \n\t\t  Age: " << theAge << "\n\t\t  Occupation: " << theOccupation << endl << endl;  
 
         theFile.close();
     }

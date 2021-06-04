@@ -45,9 +45,6 @@ class friendLL {
         std::vector<std::string> getAllFriends(){
             std::vector<std::string> names;
             Node* temp = head;
-            // if (temp == nullptr){
-            //     std::cout << "temp is null" << std::endl;
-            // }
             while(temp != nullptr){
                 names.push_back(temp->name);
                 temp = temp->next;
