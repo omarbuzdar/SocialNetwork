@@ -68,7 +68,9 @@ int main(int argc, char *argv[]){
     // fg1.printFriends("Mason Davis");
     // fg1.print();
 
-    cout << "PROFILE INDEX TEST: " << rb1.getProfileIndex("Omar Buzdar") << endl;
+    // cout << "PROFILE INDEX TEST: " << rb1.getProfileIndex("Omar Buzdar") << endl;
+    rb1.friendshipQuery("John Armstrong");
+    // fg1.printFriends("John Armstrong");
 
     
     return 0;

@@ -5,6 +5,7 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
+#include <fstream>
 // #include "friendshipGraph.h"
 // #include "friendshipGraph.cpp"
 
@@ -101,7 +102,7 @@ class redBlack {
         void LRRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
         void RLRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
 
-        void friendshipQuery(std::string name, ifstream& theFile);
+        void friendshipQuery(std::string name);
         
     private:
         redBlackNode* root;

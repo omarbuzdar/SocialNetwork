@@ -297,15 +297,36 @@ int redBlack::countNodes(redBlackNode* r){
     return nodes;
 }
 
-void redBlack::friendshipQuery(std::string name, ifstream& theFile){
-    theFile.open();
+void redBlack::friendshipQuery(std::string name){
     redBlackNode* temp = exactSearch(this->root, name);
+    string readLine;
+    string thePerson;
+    string theAge;
+    string theOccupation;
     //int personIndex = temp->getIndex();
     graphNode* graphPerson = temp->getGraphPointer();
+    
     vector<std::string> friendsNames = graphPerson->findFriends();
-    for(int i = 0; i < friendsNames.size(); i++){
-        int profileNum = (this->exactSearch(this->root, friendsNames[i]))->getIndex();
+    
+    for(int i = 1; i <= friendsNames.size(); i++){
+        ifstream theFile;
+        theFile.open("profileOutput");
+        cout << "here1" << endl;
+        int profileNum = (this->exactSearch(this->root, friendsNames[i-1]))->getIndex();
+        for(int j = 1; j <= profileNum; j++)
+        {
+            getline(theFile, readLine, '\n');
+        }
+        cout << "here2" << endl;
 
+        thePerson = readLine.substr(0, 20);
+        readLine.erase(0,20);
+        theAge = readLine.substr(0,3);
+        readLine.erase(0,3);
+        theOccupation = readLine;
+
+        cout << "\tFriend " << i << ":\t" << thePerson << " \tAge: " << theAge << "\tOccupation: " << theOccupation << endl;  
+
+        theFile.close();
     }
-    theFile.close();
 }

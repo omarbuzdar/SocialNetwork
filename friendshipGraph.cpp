@@ -3,12 +3,12 @@
 
 
 void friendshipGraph::addProfile(std::string n, int index, redBlackNode& rbNode){
-    graphNode newNode = graphNode(n);
-    newNode.profileIndex = index;
-    rbNode.graphPtr = &newNode;
-    newNode.left = rbNode.left;
-    newNode.right = rbNode.right;
-    theGraph.push_back(newNode);
+    graphNode* newNode = new graphNode(n);
+    newNode->profileIndex = index;
+    rbNode.graphPtr = newNode;
+    newNode->left = rbNode.left;
+    newNode->right = rbNode.right;
+    theGraph.push_back(*newNode);
 }
 
 void friendshipGraph::addFriend(std::string name1, std::string name2){

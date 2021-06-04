@@ -42,6 +42,19 @@ class friendLL {
             return head;
         }
 
+        std::vector<std::string> getAllFriends(){
+            std::vector<std::string> names;
+            Node* temp = head;
+            // if (temp == nullptr){
+            //     std::cout << "temp is null" << std::endl;
+            // }
+            while(temp != nullptr){
+                names.push_back(temp->name);
+                temp = temp->next;
+            }
+            return names;
+        }
+
     private:
         Node* head;
 };
@@ -55,15 +68,16 @@ struct graphNode {
         right = nullptr;
     } 
 
-    vector<std::string> findFriends(){
-        vector<std::string> names;
-        Node* temp = myFriends->getHead();
-        while(temp != nullptr){
-            names.push_back(temp->name);
-            temp = temp->next;
-        }
-        return names;
-    }
+    std::vector<std::string> findFriends(){ return myFriends->getAllFriends(); }
+    //     std::vector<std::string> names;
+    //     Node* temp = myFriends->getHead();
+    //     while(temp != nullptr){
+    //         std::cout << std::endl << temp->name;
+    //         names.push_back(temp->name);
+    //         temp = temp->next;
+    //     }
+    //     return names;
+    // }
 
     std::string name;
     friendLL* myFriends;
