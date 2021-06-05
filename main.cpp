@@ -69,7 +69,10 @@ int main(int argc, char *argv[]){
     // fg1.print();
 
     // cout << "PROFILE INDEX TEST: " << rb1.getProfileIndex("Omar Buzdar") << endl;
-    rb1.friendshipQuery("Sandra Perez");
+    //rb1.friendshipQuery("Sandra Perez");
+    //cout << "-------------------" << endl;
+    //rb1.rangeQuery(rb1.getRoot(), "Kendra Benson", "Kevin Young");
+    rb1.printAll();
 
     
     return 0;

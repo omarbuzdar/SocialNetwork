@@ -83,14 +83,13 @@ class redBlack {
         redBlack() : root(nullptr) {}
 
         void insert(std::string name, int index, friendshipGraph& theG);    
-        std::string rangeQuery(redBlackNode* r, std::string name1, std::string name2);
-        std::string _rangeQuery(redBlackNode* r, std::string name1, std::string name2);
+        
         redBlackNode* exactSearch(redBlackNode* n, std::string key);
 
         redBlackNode* getRoot();
         bool isEmpty();
         void makeRootBlack();
-        std::string inOrder();
+        void printAll();
         std::string _inOrder(redBlackNode* r);
         int countNodes(redBlackNode* r);
 
@@ -102,7 +101,10 @@ class redBlack {
         void LRRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
         void RLRotation(redBlackNode* n, redBlackNode* p, redBlackNode* gp);
 
+        std::string queryPrint(std::string n, std::string type);
         void friendshipQuery(std::string name);
+        void rangeQuery(redBlackNode* r, std::string name1, std::string name2);
+        std::string _rangeQuery(redBlackNode* r, std::string name1, std::string name2);
         
     private:
         redBlackNode* root;
