@@ -7,6 +7,8 @@
 #include <iomanip>
 using namespace std;
 
+
+
 int main(int argc, char *argv[]){
 
     redBlack rb1 = redBlack();
@@ -56,13 +58,15 @@ int main(int argc, char *argv[]){
             }
             profileDataIndex += 1;
         }
+
     }
+
+
 
     //ofstream outFile;
     //outFile.open(argv[2]);
     
-    inFile.close();
-    outFile.close();   
+      
 
     // cout << rb1.inOrder() << endl << endl;
     // fg1.printFriends("Mason Davis");
@@ -72,142 +76,100 @@ int main(int argc, char *argv[]){
     //rb1.friendshipQuery("Sandra Perez");
     //cout << "-------------------" << endl;
     //rb1.rangeQuery(rb1.getRoot(), "Kendra Benson", "Kevin Young");
-    rb1.printAll();
+    //rb1.printAll();
+
+    int option = 10;
 
     
+    while (option != 7){
+        cout << "Welcome to the pennyPlace Network ..."<< endl;
+        cout << "1) Initiate a Point Query." << endl;
+        cout << "2) Initiate a Range Query." << endl;
+        cout << "3) Insert a New User Into the Network." << endl;
+        cout << "4) Initiate a Friend Query." << endl;
+        cout << "5) Establish a Friendship Relationship." << endl;
+        cout << "6) See the Network." << endl;
+        cout << "7) Log Out." << endl;
+        cout << "Get Started Now! What do you want to do? (1,2,3,4,5,6,7):\n";
+        cin >> option;
+    
+       if(option == 1)
+       {
+            string name;
+            cout << "Who would you like to find? ";
+            cin.ignore();
+            getline(std::cin,name);
+            cout << rb1.queryPrint(name, "exact");   //prints the name, age, and occupation of a given name
+       }
+       else if(option == 2)
+       {
+            string name1, name2;
+            cout << "Who does the range query start from? ";
+            cin.ignore();
+            getline(std::cin,name1);
+            cout << "Who does the range query end on? ";
+            getline(std::cin,name2);
+            //cin.ignore();
+            rb1.rangeQuery(rb1.getRoot(), name1, name2);   //prints the name, age, and occupation of a given name
+       }
+       else if(option == 3)
+       {
+            string newInsert;
+            cout << "Who would you like to insert? ";
+            cin.ignore();
+            getline(std::cin,newInsert);
+            int firstComma = newInsert.find(",");
+            string thePerson = newInsert.substr(0, firstComma);
+
+            rb1.insert(thePerson, profileDataIndex, fg1);
+
+            outFile << setw(20) << thePerson;
+            newInsert.erase(0, firstComma + 1);
+            firstComma = newInsert.find(",");   
+            outFile << setw(3) << newInsert.substr(0, firstComma);      // setting the age
+            newInsert.erase(0, firstComma + 1);
+            outFile << setw(30) << newInsert << endl;
+            profileDataIndex += 1;
+       }
+       else if (option == 4)
+       {
+            string name;
+            cout << "Whose friends are we looking for? ";
+            cin.ignore();
+            getline(std::cin,name);
+            rb1.friendshipQuery(name);
+       }
+       else if (option == 5)
+       {
+            string name1, name2;
+            cout << "Who is Friend 1? ";
+            cin.ignore();
+            getline(std::cin,name1);
+            cout << "Who if Friend 2? ";
+            getline(std::cin,name2);
+            fg1.addFriend(name1, name2);
+       }
+       else if (option == 6)
+       {
+           cout << "Showing all users in the network!" << endl;
+           rb1.printAll();
+      }
+       else if (option == 7)
+       {
+           cout << "See you soon!" << endl;
+           break;
+       }
+       else {
+           cout << "You fkd up!" << endl;
+       }
+
+    }
+    
+    inFile.close();
+    outFile.close(); 
     return 0;
 
 }
 
 
-
-
-// OLD STUFF IN MAIN
-
-
-// for(int i = 0; i < 3; i++){
-        //     getline(inFile, readLine, ',');
-        // }
-        // getline(inFile, readLine, '\n');
-        //cout << " omar's readline\t " << readLine << endl;
-        // while(getline(inFile, readLine, '\n')){
-        //     string commaPos = readLine.find(",");
-        //     rb1.insert(readLine, fg1);
-        // }
-        
-        // while(!inFile.eof()){
-        //     getline(inFile, readLine, ',');   // name
-        //     rb1.insert(readLine, fg1);   
-        //     getline(inFile, readLine, ',');   // age
-        //     getline(inFile, readLine, ',');   // occupation
-        //     while(getline(inFile, readLine, '\n')){
-        //         getline(inFile, readLine, ',');
-        //         //fg1.addFriend(readLine);
-        //     }
-        // }
-            
-
-
-            // if(!inFile.eof()) {
-            //     //cout << "nicks readLine: " << readLine << endl;
-            //     getline(inFile, readLine, ',');
-            //     if(readLine != ""){
-            //         rb1.insert(readLine, fg1);
-            //         cout << "NAME: " << readLine << endl;
-            //     }
-            //     thePerson = readLine;
-            //     getline(inFile, readLine, ',');  // age
-            //     // if(readLine != ""){
-            //     //     cout << "AGE: " << readLine << endl;
-            //     // }
-            //     getline(inFile, readLine, ',');  // occupation
-            //     // if(readLine != ""){
-            //     //     cout << "OCCUPATION: " << readLine << endl;
-            //     // }
-            //     getline(inFile, readLine, '"');  // friends
-            //     cout << "READLINE FOR OMAR: " << readLine << endl;
-            //     while(readLine != "\""){
-            //         getline(inFile, readLine, ',');
-            //         if(readLine[0] == '"'){
-            //             cout << "READLINE FOR NICK: " << readLine[1] << endl;
-            //             break;
-            //         }
-            //         if(readLine != "" && readLine != "\""){
-            //             fg1.addFriend(thePerson, readLine);
-            //         }
-            //     }
-            // }
-
-        // for(int n = 0; n < 99; n++){
-        //     getline(inFile, readLine, ',');   // name
-        //     rb1.insert(readLine, fg1); 
-        //     // cout << "name: " << readLine << endl;  
-        //     // getline(inFile, readLine, ',');   // age
-        //     // cout << "age: " << readLine << endl;
-        //     // getline(inFile, readLine, ',');   // occupation
-        //     // cout << "occupation: " << readLine << endl;
-        //     while(getline(inFile, readLine, '\n')){
-        //         getline(inFile, readLine, ',');
-        //         cout << "friend: " << readLine << endl;
-        //         rb1.insert(readLine, fg1);
-        //         //fg1.addFriend(readLine);
-        //     }
-        // }
-        
-
-    // rb1.insert("omar", fg1);
-    // rb1.insert("alex", fg1);
-    // rb1.insert("zack", fg1);
-    // rb1.insert("chris", fg1);
-    // rb1.insert("steve", fg1);
-    // rb1.insert("bob", fg1);
-    // rb1.insert("ramon", fg1);
-    // rb1.insert("peter", fg1);
-    // rb1.insert("quinn", fg1);
-    // rb1.insert("bz", fg1);
-    // rb1.insert("zz", fg1);
-    // rb1.insert("zoe", fg1);
-
-    // fg1.addFriend("zack", "omar");
-    // fg1.addFriend("chris", "zack");
-    // fg1.addFriend("omar", "peter");
-    // fg1.addFriend("zoe", "zack");
-
-    // cout << rb1.inOrder() << endl;
-    // fg1.print();
-
-    // cout << "omars friends: " << endl;
-    // fg1.printFriends("omar");
-    // cout << "zacks friends: " << endl;
-    // fg1.printFriends("zack");
-    // cout << "chris friends: " << endl;
-    // fg1.printFriends("chris");
-
-    
-    
-
-
-    // cout << rb1.inOrder() << endl;
-    // cout << rb1.countNodes(rb1.getRoot()) << endl;
-    // //cout << ((rb1.search(rb1.getRoot(), "zack"))->left)->name << endl;
-    // //cout << "SEARCH: " << (rb1.exactSearch(rb1.getRoot(), "zoe"))->name << endl;
-    // cout <<"\n" << endl;
-    // cout << "RangeQuery: \n" << rb1.rangeQuery(rb1.getRoot(), "peter", "zz") << endl;
-
-    
-    // fg1.addProfile("nick");
-    // fg1.addProfile("omar");
-    // fg1.addProfile("zack");
-    // fg1.addProfile("martin");
-    // fg1.addFriend("nick", "omar");
-    // fg1.addFriend("nick", "zack");
-    // fg1.addFriend("martin", "omar");
-    // fg1.addFriend("martin", "nick");
-    // cout << "nicks friends: " << endl;
-    // fg1.printFriends("nick");
-    // cout << "omars friends: " << endl;
-    // fg1.printFriends("omar");
-    // cout << "zacks friends: " << endl;
-    // fg1.printFriends("zack");
-    // cout << "martins friends: " << endl;
-    // fg1.printFriends("martin");
+   

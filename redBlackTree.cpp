@@ -17,6 +17,9 @@ redBlackNode* redBlack::exactSearch(redBlackNode* n, std::string key){
 std::string redBlack::queryPrint(std::string n, std::string type){
 
     redBlackNode* temp = exactSearch(this->root, n);
+    if(temp == nullptr){
+        return ("User \"" + n + "\" not found!\n");
+    }
     graphNode* graphPerson = temp->getGraphPointer();
 
     std::string readLine;
@@ -57,7 +60,7 @@ std::string redBlack::queryPrint(std::string n, std::string type){
     std::string range = "";
     theFile.close();
     if(type == "exact"){
-        range = ("\tFriend: " + thePerson + " \n\t\tAge: " + theAge + "\n\t\tOccupation: " + theOccupation);  
+        range = ("\tPerson: " + thePerson + " \n\t\tAge: " + theAge + "\n\t\tOccupation: " + theOccupation);  
     }else if(type == "range"){
         range = "\tPerson: " + thePerson + " \n\t\tAge: " + theAge + "\n\t\tOccupation: " + theOccupation + "\n";
         range += "\t\tList of Friends: \n\t\t\t"; 
@@ -374,6 +377,10 @@ int redBlack::countNodes(redBlackNode* r){
 void redBlack::friendshipQuery(std::string name){
     cout << "Friends of " << name << ":\n\n";
     redBlackNode* temp = exactSearch(this->root, name);
+    if(temp == nullptr){
+        cout << "User \"" << name << "\" not found!" << endl;
+        return;
+    }
     graphNode* graphPerson = temp->getGraphPointer();
     
     vector<std::string> friendsNames = graphPerson->findFriends();
