@@ -48,14 +48,18 @@ int main(int argc, char *argv[]){
             firstComma = readLine.find(",");
             outFile << setw(30) << readLine.substr(0, firstComma) << endl;    //setting the job
             
-            readLine.erase(0, firstComma + 2);
-            firstComma = readLine.find(",\"");
-            int secondComma = 0;
-            while(readLine[0] != '"'){
-                secondComma = readLine.find(",");
-                fg1.addFriend(thePerson, readLine.substr(0, secondComma));
-                readLine.erase(0, secondComma + 1);
+            
+            if(readLine.find(",\"") != std::string::npos) {
+                readLine.erase(0, firstComma + 2);
+                firstComma = readLine.find(",\"");
+                int secondComma = 0;
+                while(readLine[0] != '"'){
+                    secondComma = readLine.find(",");
+                    fg1.addFriend(thePerson, readLine.substr(0, secondComma));
+                    readLine.erase(0, secondComma + 1);
+                }
             }
+            
             profileDataIndex += 1;
         }
 
