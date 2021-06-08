@@ -8,7 +8,6 @@
 using namespace std;
 
 
-
 int main(int argc, char *argv[]){
 
     redBlack rb1 = redBlack();
@@ -65,23 +64,6 @@ int main(int argc, char *argv[]){
 
     }
 
-
-
-    //ofstream outFile;
-    //outFile.open(argv[2]);
-    
-      
-
-    // cout << rb1.inOrder() << endl << endl;
-    // fg1.printFriends("Mason Davis");
-    // fg1.print();
-
-    // cout << "PROFILE INDEX TEST: " << rb1.getProfileIndex("Omar Buzdar") << endl;
-    //rb1.friendshipQuery("Sandra Perez");
-    //cout << "-------------------" << endl;
-    //rb1.rangeQuery(rb1.getRoot(), "Kendra Benson", "Kevin Young");
-    //rb1.printAll();
-
     int option = 10;
 
     
@@ -113,7 +95,6 @@ int main(int argc, char *argv[]){
             getline(std::cin,name1);
             cout << "Who does the range query end on? ";
             getline(std::cin,name2);
-            //cin.ignore();
             rb1.rangeQuery(rb1.getRoot(), name1, name2);   //prints the name, age, and occupation of a given name
        }
        else if(option == 3)
@@ -149,9 +130,10 @@ int main(int argc, char *argv[]){
             cout << "Who is Friend 1? ";
             cin.ignore();
             getline(std::cin,name1);
-            cout << "Who if Friend 2? ";
+            cout << "Who is Friend 2? ";
             getline(std::cin,name2);
             fg1.addFriend(name1, name2);
+            cout << "Created a friendship between " << name1 << " and " << name2 << "!\n";
        }
        else if (option == 6)
        {
@@ -164,7 +146,7 @@ int main(int argc, char *argv[]){
            break;
        }
        else {
-           cout << "You fkd up!" << endl;
+           cout << "Incorrect Input! Please choose one of the following options!" << endl;
        }
 
     }

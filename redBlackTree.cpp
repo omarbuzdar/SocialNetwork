@@ -284,11 +284,6 @@ void redBlack::insert(std::string name, int index, friendshipGraph& theG){
     }
     newNode->parent = parent; 
     
-
-    // case 1:  parent is black
-
-    // case 2: parent is red,two reds in row are not allowed
-    
     if(parent->color == "r"){
         redBlackNode* uncle = nullptr;
         redBlackNode* gp = parent->parent;

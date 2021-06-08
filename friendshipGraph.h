@@ -6,9 +6,6 @@
 #include "node.h"
 #include "redBlackTree.h"
 
-// class redBlack;
-// struct redBlackNode;
-
 class friendLL {
     public:
         friendLL() : head(nullptr) {}
@@ -66,15 +63,6 @@ struct graphNode {
     } 
 
     std::vector<std::string> findFriends(){ return myFriends->getAllFriends(); }
-    //     std::vector<std::string> names;
-    //     Node* temp = myFriends->getHead();
-    //     while(temp != nullptr){
-    //         std::cout << std::endl << temp->name;
-    //         names.push_back(temp->name);
-    //         temp = temp->next;
-    //     }
-    //     return names;
-    // }
 
     std::string name;
     friendLL* myFriends;

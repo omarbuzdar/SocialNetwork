@@ -6,8 +6,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-// #include "friendshipGraph.h"
-// #include "friendshipGraph.cpp"
 
 class friendLL;
 struct graphNode;
@@ -68,15 +66,8 @@ struct redBlackNode {
     graphNode* getGraphPointer(){
         return graphPtr;
     }
-
-    // pointer to graph/adjecency list
-    // int index to profile info on disk
-    // 
 };
-/*
-The tree node contains a pointer to the list, an
-integer index of person’s information on disk, and left/right pointers to its children.
-*/
+
 
 class redBlack {
     public:
